@@ -76,10 +76,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap.set('n', 'gD', vim.lsp.buf.declaration, desc('lsp [g]o to [D]eclaration'))
     keymap.set('n', 'gd', vim.lsp.buf.definition, desc('lsp [g]o to [d]efinition'))
     keymap.set('n', '<space>gt', vim.lsp.buf.type_definition, desc('lsp [g]o to [t]ype definition'))
+
     keymap.set('n', 'K', vim.lsp.buf.hover, desc('[lsp] hover'))
     keymap.set('n', '<space>pd', peek_definition, desc('lsp [p]eek [d]efinition'))
     keymap.set('n', '<space>pt', peek_type_definition, desc('lsp [p]eek [t]ype definition'))
-    keymap.set('n', 'gi', vim.lsp.buf.implementation, desc('lsp [g]o to [i]mplementation'))
+    keymap.set('n', '<space>gi', vim.lsp.buf.implementation, desc('lsp [g]o to [i]mplementation'))
     keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, desc('[lsp] signature help'))
     keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, desc('lsp add [w]orksp[a]ce folder'))
     keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, desc('lsp [w]orkspace folder [r]emove'))
@@ -93,14 +94,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     keymap.set('n', '<M-l>', vim.lsp.codelens.run, desc('[lsp] run code lens'))
     keymap.set('n', '<space>cr', vim.lsp.codelens.refresh, desc('lsp [c]ode lenses [r]efresh'))
     keymap.set('n', 'gr', vim.lsp.buf.references, desc('lsp [g]et [r]eferences'))
-    keymap.set('n', '<space>f', function()
+    keymap.set('n', '<space>rt', function()
       vim.lsp.buf.format { async = true }
-    end, desc('[lsp] [f]ormat buffer'))
+    end, desc('[lsp] fo[r]ma[t] buffer'))
     if client and client.server_capabilities.inlayHintProvider then
-      keymap.set('n', '<space>h', function()
+      keymap.set('n', '<space>th', function()
         local current_setting = vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }
         vim.lsp.inlay_hint.enable(not current_setting, { bufnr = bufnr })
-      end, desc('[lsp] toggle inlay hints'))
+      end, desc('[lsp] [t]oggle inlay [h]ints'))
     end
 
     -- Auto-refresh code lenses
