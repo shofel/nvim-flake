@@ -27,13 +27,9 @@ with final.pkgs.lib; let
   # }
   all-plugins = with pkgs.vimPlugins; [
     # Slava added these plugins here
-    fzf-lua
-    leap-nvim vim-repeat
-    guess-indent-nvim
-    typescript-tools-nvim
-    lualine-nvim
-    mini-nvim
-    catppuccin-nvim
+    fzf-lua # https://github.com/ibhagwan/fzf-lua
+    mini-nvim # https://github.com/echasnovski/mini.nvim
+    catppuccin-nvim # https://github.com/catppuccin/nvim
     #
     # plugins from nixpkgs go in here.
     # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
@@ -55,7 +51,6 @@ with final.pkgs.lib; let
     diffview-nvim # https://github.com/sindrets/diffview.nvim/
     neogit # https://github.com/TimUntersberger/neogit/
     gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
-    vim-fugitive # https://github.com/tpope/vim-fugitive/
     # ^ git integration plugins
     # UI
     lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
@@ -64,11 +59,13 @@ with final.pkgs.lib; let
     nvim-treesitter-context # nvim-treesitter-context
     # ^ UI
     # language support
+    typescript-tools-nvim # https://github.com/pmizio/typescript-tools.nvim
     # ^ language support
     # navigation/editing enhancement plugins
+    leap-nvim vim-repeat # https://github.com/ggandor/leap.nvim
+    guess-indent-nvim # https://github.com/nmac427/guess-indent.nvim/
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
     eyeliner-nvim # Highlights unique characters for f/F and t/T motions | https://github.com/jinh0/eyeliner.nvim
-    nvim-surround # https://github.com/kylechui/nvim-surround/
     nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
     nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
     # ^ navigation/editing enhancement plugins
