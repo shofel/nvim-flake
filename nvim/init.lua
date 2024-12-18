@@ -19,15 +19,15 @@ end
 -- Search down into subfolders
 opt.path = vim.o.path .. '**'
 
-opt.number = true
-opt.relativenumber = true
+opt.number = false
+opt.relativenumber = false
 opt.cursorline = true
 opt.lazyredraw = true
 opt.showmatch = true -- Highlight matching parentheses, etc
 opt.incsearch = true
 opt.hlsearch = true
 
-opt.spell = true
+opt.spell = false
 opt.spelllang = 'en'
 
 opt.expandtab = true

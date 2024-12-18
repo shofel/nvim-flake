@@ -5,9 +5,6 @@ vim.g.did_load_statuscol_plugin = true
 
 -- @see https://github.com/luukvbaal/statuscol.nvim
 
-vim.opt.number = false
-vim.opt.relativenumber = false
-
 local builtin = require("statuscol.builtin")
 
 require('statuscol').setup {
