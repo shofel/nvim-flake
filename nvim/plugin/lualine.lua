@@ -55,4 +55,4 @@ require('lualine').setup {
   extensions = { 'fzf', 'toggleterm', 'quickfix' },
 }
 
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
