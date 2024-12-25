@@ -32,6 +32,7 @@ with final.pkgs.lib; let
     catppuccin-nvim # https://github.com/catppuccin/nvim
     vim-eunuch # https://tpope.io/vim/eunuch.git
     neorg # https://github.com/nvim-neorg/neorg
+    (mkNvimPlugin inputs.vim-kitty "vim-kitty") # https://github.com/fladson/vim-kitty
     #
     # plugins from nixpkgs go in here.
     # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins

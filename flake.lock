@@ -199,7 +199,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "gen-luarc": "gen-luarc",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "vim-kitty": "vim-kitty"
       }
     },
     "systems": {
@@ -214,6 +215,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vim-kitty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731077808,
+        "narHash": "sha256-zRjBMeDpsiMjAczZkJNQKEBPKcjQHR/+OGyx3q/ebGQ=",
+        "owner": "fladson",
+        "repo": "vim-kitty",
+        "rev": "ceaae754267f9578b6313890596ee34a19c00dad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fladson",
+        "repo": "vim-kitty",
         "type": "github"
       }
     }
