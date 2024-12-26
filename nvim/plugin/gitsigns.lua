@@ -19,25 +19,19 @@ vim.schedule(function()
       end
 
       -- Navigation
-      map('n', ']g', function()
-        if vim.wo.diff then
-          return ']g'
-        end
+      map('n', ']h', function()
         vim.schedule(function()
           gs.next_hunk()
         end)
         return '<Ignore>'
-      end, { expr = true, desc = '[g]it next hunk' })
+      end, { expr = true, desc = 'git next [h]unk' })
 
-      map('n', '[g', function()
-        if vim.wo.diff then
-          return '[g'
-        end
+      map('n', '[h', function()
         vim.schedule(function()
           gs.prev_hunk()
         end)
         return '<Ignore>'
-      end, { expr = true, desc = '[g]it previous hunk' })
+      end, { expr = true, desc = 'git previous [h]unk' })
 
       -- Actions
       map({ 'n', 'v' }, '<space>hs', function()
