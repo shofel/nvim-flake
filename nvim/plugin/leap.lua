@@ -5,11 +5,12 @@ vim.g.did_load_leap_plugin = true
 
 local leap = require('leap')
 leap.opts.case_sensitive = true
+leap.opts.labels = 'oesrtnaicu,fdlw.xhmkz/-vgzqbp'
 
 -- Keys:
 --   - use `l` to leap forward, and `h` to leap backward
 --   - for a single-letter jump, press a letter, then <cr>
---   - press <cr> to repeat jump
+--   - press <cr> to repeat jump, or <backspace> to repeat in the opposite direction
 --   - use `j` for a [j]ump to another window
 --   - from now on, f F t T , ; and k are free !
 -- All the movements are possible with leap.
