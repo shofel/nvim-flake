@@ -3,14 +3,17 @@ if vim.g.did_load_leap_plugin then
 end
 vim.g.did_load_leap_plugin = true
 
+local leap = require('leap')
+leap.opts.case_sensitive = true
+
 -- Keys:
 --   - use `l` to leap forward, and `h` to leap backward
 --   - for a single-letter jump, press a letter, then <cr>
 --   - press <cr> to repeat jump
---   - use j for [j]ump to another window
+--   - use `j` for a [j]ump to another window
 --   - from now on, f F t T , ; and k are free !
 -- All the movements are possible with leap.
--- Also I have arrows and pgup,pgdn,home,end on a separate layer
+-- Especially when one has arrows and pgup,pgdn,home,end on a separate layer :)
 
 vim.keymap.set({'n', 'x', 'o'}, 'l',  '<Plug>(leap-forward)')
 vim.keymap.set({'n', 'x', 'o'}, 'h',  '<Plug>(leap-backward)')
