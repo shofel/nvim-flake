@@ -68,7 +68,6 @@ with final.pkgs.lib; let
     leap-nvim vim-repeat # https://github.com/ggandor/leap.nvim
     guess-indent-nvim # https://github.com/nmac427/guess-indent.nvim/
     vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
-    eyeliner-nvim # Highlights unique characters for f/F and t/T motions | https://github.com/jinh0/eyeliner.nvim
     nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
     nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
     # ^ navigation/editing enhancement plugins
