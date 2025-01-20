@@ -3,9 +3,9 @@ local fn = vim.fn
 local opt = vim.o
 local g = vim.g
 
--- <leader> key
--- g.mapleader = '<Space>'
--- g.maplocalleader = '<Return>'
+-- A convention instead of mapleader
+-- <leader>      is <Space>
+-- <localleader> is ,
 
 opt.compatible = false
 
