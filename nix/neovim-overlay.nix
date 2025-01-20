@@ -90,8 +90,8 @@ with final.pkgs.lib; let
     # language servers, etc.
     lua-language-server
     nil # nix LSP
-    # go tools
-    gopls # lsp
+    gopls # go lsp
+    basedpyright # python lsp
   ];
 in {
   # This is the neovim derivation
