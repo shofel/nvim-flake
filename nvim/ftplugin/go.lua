@@ -1,4 +1,30 @@
 
+-- workaround for gopls not supporting semanticTokensProvider
+-- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+vim.api.nvim_create_autocmd("LspAttach", {
+  buffer = 0,
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client.name == 'gopls' then
+      if not client.server_capabilities.semanticTokensProvider then
+        local semantic = client.config.capabilities.textDocument.semanticTokens
+        if semantic then
+          client.server_capabilities.semanticTokensProvider = {
+            full = true,
+            legend = {
+              tokenTypes = semantic.tokenTypes,
+              tokenModifiers = semantic.tokenModifiers,
+            },
+            range = true,
+          }
+        end
+      end
+    end
+  end
+})
+vim.g.did_set_gopls_onattach_hack = true
+
+
 local gopls_cmd = 'gopls'
 
 local root_files = {
@@ -49,26 +75,3 @@ vim.lsp.start {
     },
   },
 }
-
--- workaround for gopls not supporting semanticTokensProvider
--- https://github.com/golang/go/issues/54531#issuecomment-1464982242
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client and client.name == 'gopls' then
-      if not client.server_capabilities.semanticTokensProvider then
-        local semantic = client.config.capabilities.textDocument.semanticTokens
-        if semantic then
-          client.server_capabilities.semanticTokensProvider = {
-            full = true,
-            legend = {
-              tokenTypes = semantic.tokenTypes,
-              tokenModifiers = semantic.tokenModifiers,
-            },
-            range = true,
-          }
-        end
-      end
-    end
-  end
-})
