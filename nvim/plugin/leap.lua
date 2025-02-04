@@ -6,6 +6,7 @@ vim.g.did_load_leap_plugin = true
 local leap = require('leap')
 leap.opts.case_sensitive = true
 leap.opts.labels = 'oesrtnaicu,fdlw.xhmkz/-vgzqbp'
+leap.opts.safe_labels = leap.opts.labels
 
 -- Keys:
 --   - use `l` to leap forward, and `h` to leap backward
@@ -27,3 +28,11 @@ vim.keymap.set({'n', 'x', 'o'}, 'T', '<Nop>')
 vim.keymap.set({'n', 'x', 'o'}, ',', '<Nop>')
 vim.keymap.set({'n', 'x', 'o'}, ';', '<Nop>')
 vim.keymap.set({'n', 'x', 'o'}, 'k', '<Nop>')
+
+-- disable ft motions
+vim.keymap.set({'n', 'x', ''}, 'f', '<Nop>')
+vim.keymap.set({'n', 'x', ''}, 'F', '<Nop>')
+vim.keymap.set({'n', 'x', ''}, 't', '<Nop>')
+vim.keymap.set({'n', 'x', ''}, 'T', '<Nop>')
+vim.keymap.set({'n', 'x', ''}, ',', '<Nop>')
+vim.keymap.set({'n', 'x', ''}, ';', '<Nop>')
