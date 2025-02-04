@@ -32,6 +32,7 @@ with final.pkgs.lib; let
     catppuccin-nvim # https://github.com/catppuccin/nvim
     vim-eunuch # https://tpope.io/vim/eunuch.git
     neorg # https://github.com/nvim-neorg/neorg
+    snacks-nvim # https://github.com/folke/snacks.nvim
     noice-nvim # https://github.com/folke/noice.nvim
     (mkNvimPlugin inputs.vim-kitty "vim-kitty") # https://github.com/fladson/vim-kitty
     #
