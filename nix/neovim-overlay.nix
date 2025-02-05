@@ -34,6 +34,8 @@ with final.pkgs.lib; let
     neorg # https://github.com/nvim-neorg/neorg
     snacks-nvim # https://github.com/folke/snacks.nvim
     noice-nvim # https://github.com/folke/noice.nvim
+    nvim-luadev # https://github.com/bfredl/nvim-luadev
+    (mkNvimPlugin inputs.iron-nvim "iron-nvim") # https://github.com/Vigemus/iron.nvim
     (mkNvimPlugin inputs.vim-kitty "vim-kitty") # https://github.com/fladson/vim-kitty
     #
     # plugins from nixpkgs go in here.
