@@ -32,6 +32,7 @@ with final.pkgs.lib; let
     catppuccin-nvim # https://github.com/catppuccin/nvim
     vim-eunuch # https://tpope.io/vim/eunuch.git
     neorg # https://github.com/nvim-neorg/neorg
+    inputs.neoclip.packages.${pkgs.system}.default # neoclip
     snacks-nvim # https://github.com/folke/snacks.nvim
     noice-nvim # https://github.com/folke/noice.nvim
     nvim-luadev # https://github.com/bfredl/nvim-luadev
