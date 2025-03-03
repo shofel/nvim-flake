@@ -12,10 +12,6 @@
       url = "github:fladson/vim-kitty";
       flake = false;
     };
-    iron-nvim = {
-      url = "github:Vigemus/iron.nvim";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
