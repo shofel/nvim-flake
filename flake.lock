@@ -141,14 +141,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1740983411,
-        "narHash": "sha256-wUavTjWrCb9NjheyKHWZQdhG0I9QdNuqEQNAueJ5HxE=",
-        "path": "/home/slava/workspaces-one/forks/neoclip",
-        "type": "path"
+        "lastModified": 1740989404,
+        "narHash": "sha256-rj5Osy7/41SgIgn9LW6O/GMsxBhuAB8Y9k4+Tz0dhIU=",
+        "owner": "shofel",
+        "repo": "neoclip",
+        "rev": "d5a4e06e3c2087ca5fc5a5e5a441fa3b19bc7249",
+        "type": "github"
       },
       "original": {
-        "path": "/home/slava/workspaces-one/forks/neoclip",
-        "type": "path"
+        "owner": "shofel",
+        "repo": "neoclip",
+        "type": "github"
       }
     },
     "nixpkgs": {
