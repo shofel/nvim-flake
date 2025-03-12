@@ -12,8 +12,7 @@
       url = "github:fladson/vim-kitty";
       flake = false;
     };
-    neoclip.url = "github:shofel/neoclip";
-    # neoclip.url = "path:///home/slava/workspaces-one/forks/neoclip";
+    neoclip.url = "github:neoclip-nvim/neoclip-flake";
   };
 
   outputs = inputs @ {
