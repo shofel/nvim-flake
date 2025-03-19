@@ -93,8 +93,6 @@ vim.diagnostic.config {
   },
 }
 
-g.editorconfig = true
-
 vim.opt.colorcolumn = '100'
 
 -- Native plugins
