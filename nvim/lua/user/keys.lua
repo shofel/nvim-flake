@@ -11,7 +11,7 @@ local diagnostic = vim.diagnostic
 keymap.set('n', '<C-s>', '<cmd>w<cr>', { silent = true, desc = 'Save buffer'})
 
 -- Copy with mouse
-keymap.set('x', '<LeftRelease>', '"*y')
+keymap.set('x', '<LeftRelease>', '"*ygv')
 
 -- Buffer list navigation
 keymap.set('n', '[b', vim.cmd.bprevious, { silent = true, desc = 'previous [b]uffer' })
