@@ -17,77 +17,78 @@ with final.pkgs.lib; let
   # This is the helper function that builds the Neovim derivation.
   mkNeovim = pkgs.callPackage ./mkNeovim.nix { inherit pkgs-wrapNeovim; };
 
-  # A plugin can either be a package or an attrset, such as
-  # { plugin = <plugin>; # the package, e.g. pkgs.vimPlugins.nvim-cmp
-  #   config = <config>; # String; a config that will be loaded with the plugin
-  #   # Boolean; Whether to automatically load the plugin as a 'start' plugin,
-  #   # or as an 'opt' plugin, that can be loaded with `:packadd!`
-  #   optional = <true|false>; # Default: false
-  #   ...
-  # }
-  all-plugins = with pkgs.vimPlugins; [
-    # Slava added these plugins here
-    fzf-lua # https://github.com/ibhagwan/fzf-lua
-    mini-nvim # https://github.com/echasnovski/mini.nvim
-    catppuccin-nvim # https://github.com/catppuccin/nvim
-    vim-eunuch # https://tpope.io/vim/eunuch.git
-    neorg # https://github.com/nvim-neorg/neorg
-    inputs.neoclip.packages.${pkgs.system}.default # neoclip
-    snacks-nvim # https://github.com/folke/snacks.nvim
-    noice-nvim # https://github.com/folke/noice.nvim
-    nvim-luadev # https://github.com/bfredl/nvim-luadev
-    (mkNvimPlugin inputs.vim-kitty "vim-kitty") # https://github.com/fladson/vim-kitty
-    #
-    # plugins from nixpkgs go in here.
-    # https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=vimPlugins
-    nvim-treesitter.withAllGrammars
-    luasnip # snippets | https://github.com/l3mon4d3/luasnip/
-    # nvim-cmp (autocompletion) and extensions
-    nvim-cmp # https://github.com/hrsh7th/nvim-cmp
-    cmp_luasnip # snippets autocompletion extension for nvim-cmp | https://github.com/saadparwaiz1/cmp_luasnip/
-    lspkind-nvim # vscode-like LSP pictograms | https://github.com/onsails/lspkind.nvim/
-    cmp-nvim-lsp # LSP as completion source | https://github.com/hrsh7th/cmp-nvim-lsp/
-    cmp-nvim-lsp-signature-help # https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/
-    cmp-buffer # current buffer as completion source | https://github.com/hrsh7th/cmp-buffer/
-    cmp-path # file paths as completion source | https://github.com/hrsh7th/cmp-path/
-    cmp-nvim-lua # neovim lua API as completion source | https://github.com/hrsh7th/cmp-nvim-lua/
-    cmp-cmdline # cmp command line suggestions
-    cmp-cmdline-history # cmp command line history suggestions
-    # ^ nvim-cmp extensions
-    # git integration plugins
-    diffview-nvim # https://github.com/sindrets/diffview.nvim/
-    neogit # https://github.com/TimUntersberger/neogit/
-    gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
-    # ^ git integration plugins
-    # UI
-    lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
-    nvim-navic # Add LSP location to lualine | https://github.com/SmiteshP/nvim-navic
-    statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
-    nvim-treesitter-context # nvim-treesitter-context
-    # ^ UI
-    # language support
-    typescript-tools-nvim # https://github.com/pmizio/typescript-tools.nvim
-    # ^ language support
-    # navigation/editing enhancement plugins
-    leap-nvim vim-repeat # https://github.com/ggandor/leap.nvim
-    guess-indent-nvim # https://github.com/nmac427/guess-indent.nvim/
-    vim-unimpaired # predefined ] and [ navigation keymaps | https://github.com/tpope/vim-unimpaired/
-    nvim-treesitter-textobjects # https://github.com/nvim-treesitter/nvim-treesitter-textobjects/
-    nvim-ts-context-commentstring # https://github.com/joosepalviste/nvim-ts-context-commentstring/
-    # ^ navigation/editing enhancement plugins
-    # Useful utilities
-    nvim-unception # Prevent nested neovim sessions | nvim-unception
-    # ^ Useful utilities
-    # libraries that other plugins depend on
-    sqlite-lua
-    plenary-nvim
-    nvim-web-devicons
-    vim-repeat
-    # ^ libraries that other plugins depend on
-    # bleeding-edge plugins from flake inputs
-    # (mkNvimPlugin inputs.wf-nvim "wf.nvim") # (example) keymap hints | https://github.com/Cassin01/wf.nvim
-    # ^ bleeding-edge plugins from flake inputs
-    which-key-nvim
+  all-plugins =
+    let
+      start = x: {plugin = x; optional = false;};
+      opt = x: {plugin = x; optional = true;};
+      luaconfig = x: {config = "lua <<EOF\n" + x + "\nEOF\n";};
+      treesitter =
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins
+       (p: with p; [
+        bash
+        c
+        go
+        lua
+        nix
+        python
+        typescript
+       ]));
+       neoclip = inputs.neoclip.packages.${pkgs.system}.default;
+     in
+     with pkgs.vimPlugins; [
+
+     (start lze) # lazy-load plugins https://github.com/BirdeeHub/lze
+     (start treesitter)
+
+     # adds around 50ms to startup time
+     (start catppuccin-nvim // { config = "colorscheme catppuccin-frappe"; })
+     lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
+
+     (start nvim-luadev) # nvim lua repl  https://github.com/bfredl/nvim-luadev
+
+     (opt fzf-lua) # https://github.com/ibhagwan/fzf-lua
+
+     (start mini-nvim) # https://github.com/echasnovski/mini.nvim
+     (start snacks-nvim) # https://github.com/folke/snacks.nvim
+     (start which-key-nvim)
+
+     (start noice-nvim)
+     # ((opt noice-nvim) // # https://github.com/folke/noice.nvim
+     #  (luaconfig /* lua */ ''
+     #      require('lze').load({
+     #        "noice-nvim",
+     #        keys = {':', '/', '?'},
+     #        after = function () require'plugins.noice' end
+     #        -- after = function() vim.notify('noice11') end
+     #      })
+     #  ''))
+
+      gitsigns-nvim # https://github.com/lewis6991/gitsigns.nvim/
+      statuscol-nvim # Status column | https://github.com/luukvbaal/statuscol.nvim/
+
+      # https://github.com/nmac427/guess-indent.nvim/
+      ((opt guess-indent-nvim) //
+       (luaconfig /* lua */ ''
+         require('lze').load({
+           "guess-indent.nvim",
+           event = 'DeferredUIEnter',
+           after = function() require('guess-indent').setup() end
+         })
+       ''))
+
+      leap-nvim vim-repeat # https://github.com/ggandor/leap.nvim
+
+      # https://github.com/nvim-neorg/neorg
+      ((opt neorg) //
+       (luaconfig /* lua */ ''
+         require('lze').load({
+           "neorg",
+           event = 'DeferredUIEnter',
+           after = function() require('user.neorg') end
+         })
+       ''))
+
+      neoclip # https://github.com/matveyt/neoclip
   ];
 
   extraPackages = with pkgs; [

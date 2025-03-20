@@ -1,6 +1,19 @@
-local fzf = require('fzf-lua')
 
-fzf.setup({'max-perf'})
+-- create a proxy table to postpone access to fzf-lua
+local fzf = {}
+local mt = {
+  __index = function (_,k)
+    return function ()
+      if next(fzf) == nil then
+        vim.cmd.packadd('fzf-lua')
+        fzf = require('fzf-lua')
+        fzf.setup({'max-perf'})
+      end
+      require('fzf-lua')[k]()
+    end
+  end
+}
+setmetatable(fzf, mt)
 
 vim.keymap.set('n', '<space>f',  '<nop>',              {desc = 'fzf'})
 vim.keymap.set('n', '<space>fc', fzf.command_history,  {desc = 'command history'})
