@@ -30,10 +30,12 @@ with final.pkgs.lib; let
         go
         lua
         nix
+        norg
         python
         typescript
        ]));
        neoclip = inputs.neoclip.packages.${pkgs.system}.default;
+       vim-kitty = mkNvimPlugin inputs.vim-kitty "vim-kitty";
      in
      with pkgs.vimPlugins; [
 
@@ -41,7 +43,7 @@ with final.pkgs.lib; let
      (start treesitter)
 
      # adds around 50ms to startup time
-     (start catppuccin-nvim // { config = "colorscheme catppuccin-frappe"; })
+     (start catppuccin-nvim)
      lualine-nvim # Status line | https://github.com/nvim-lualine/lualine.nvim/
 
      (start nvim-luadev) # nvim lua repl  https://github.com/bfredl/nvim-luadev
@@ -79,7 +81,7 @@ with final.pkgs.lib; let
       leap-nvim vim-repeat # https://github.com/ggandor/leap.nvim
 
       # https://github.com/nvim-neorg/neorg
-      ((opt neorg) //
+      ((start neorg) // # load on start, and setup after ui ready
        (luaconfig /* lua */ ''
          require('lze').load({
            "neorg",
@@ -89,6 +91,8 @@ with final.pkgs.lib; let
        ''))
 
       neoclip # https://github.com/matveyt/neoclip
+
+      vim-kitty # https://github.com/fladson/vim-kitty
   ];
 
   extraPackages = with pkgs; [
