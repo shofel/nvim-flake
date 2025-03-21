@@ -51,16 +51,20 @@
           nil
           stylua
           luajitPackages.luacheck
+          nvim-dev
         ];
         shellHook = ''
           # symlink the .luarc.json generated in the overlay
           ln -fs ${pkgs.nvim-luarc-json} .luarc.json
+          # allow quick iteration of lua configs
+          ln -Tfns $PWD/nvim ~/.config/nvim-dev
         '';
       };
     in {
       packages = rec {
-        default = nvim;
         nvim = pkgs.nvim-shovel;
+        default = nvim;
+        nvim-dev = pkgs.nvim-dev;
       };
       devShells = {
         default = shell;

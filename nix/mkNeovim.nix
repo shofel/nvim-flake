@@ -36,6 +36,7 @@ with lib;
     viAlias ? appName == null || appName == "nvim",
     # Add a "vim" binary to the build output as an alias?
     vimAlias ? appName == null || appName == "nvim",
+    wrapRc ? true,
   }: let
     # This is the structure of a plugin definition.
     # Each plugin in the `plugins` argument list can also be defined as this attrset
@@ -119,7 +120,6 @@ with lib;
     # It also adds logic for bootstrapping dev plugins (for plugin developers)
     initLua =
       ''
-        vim.notify("mk neovim pkg")
         vim.loader.enable()
         -- prepend lua directory
         vim.opt.rtp:prepend('${nvimRtp}/lua')
@@ -196,7 +196,7 @@ with lib;
           + extraMakeWrapperLuaCArgs
           + " "
           + extraMakeWrapperLuaArgs;
-        wrapRc = true;
+        inherit wrapRc;
       });
 
     isCustomAppName = appName != null && appName != "nvim";
