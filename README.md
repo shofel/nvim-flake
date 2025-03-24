@@ -1,3 +1,27 @@
+## Shofel: I played with this config extensively, and then merged it to my main flake with nixos configuration and dotfiles.
+
+### Problems I faced:
+1. slow iteration time: every tiny lua edit needs `nix build`, which was 40 seconds. There is a workaround though (wrapRC=false). You can find it in the original repo's discussions
+2. friction of updates: to update plugins, I should `nix flake update` in the neovim flake, and then `nix flake update` in the main config flake.
+
+### Why to `wrapRc` at all:
+1. You can run your nvim on any PC with `nix run mynvimflake#nvim`
+2. sudo nvim will not loose dotfiles
+
+### What learnings I would apply to this template:
+1. Facilitate (or just document) bootstraping as a directory. Probably with a git subtree
+2. make wrapRC=false by default. For a newcomer the first thing is tinkering with the cocnifg. It should be easy and fast
+
+### More
+#### Simplify the directory structure
+- `after/`, and `plugin/` is against KISS. Just `init.lua` is enough most of the time.
+- `lua/` and `ftplugin/` are opt-in. Let's put a basic example for each of them
+#### Reduce number of plugins
+#### Add utils and examples for lazy-loading
+#### lazydev 
+
+
+
 <!-- markdownlint-disable -->
 <br />
 <div align="center">
